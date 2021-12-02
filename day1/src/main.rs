@@ -2,27 +2,15 @@ fn main() {
     let txt = include_str!("../input.txt");
     let nums: Vec<usize> = txt.lines().map(|v| v.parse().unwrap()).collect();
 
-    let answer = count_incrementing(&nums);
+    let answer = nums.windows(2).filter(|v| v[0] < v[1]).count();
     println!("{}", answer);
 
     let answer2 = count_windows(&nums);
     println!("{}", answer2);
 }
 
-fn count_incrementing(nums: &[usize]) -> usize {
-    let mut last_value = None;
-    let mut count = 0;
-    for value in nums {
-        if let Some(last_value) = last_value {
-            if last_value < value {
-                count += 1;
-            }
-        }
-
-        last_value = Some(value);
-    }
-
-    count
+fn count_incrementing(n: &[usize]) -> usize {
+    n.windows(2).filter(|v| v[0] < v[1]).count()
 }
 
 fn count_windows(mut nums: &[usize]) -> usize {
