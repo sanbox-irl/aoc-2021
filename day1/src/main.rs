@@ -2,7 +2,7 @@ fn main() {
     let txt = include_str!("../input.txt");
     let nums: Vec<usize> = txt.lines().map(|v| v.parse().unwrap()).collect();
 
-    let answer = nums.windows(2).filter(|v| v[0] < v[1]).count();
+    let answer = count_incrementing(&nums);
     println!("{}", answer);
 
     let answer2 = count_windows(&nums);
